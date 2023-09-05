@@ -1,0 +1,5 @@
+[2022-09-08 08:27:04,701][fairseq_cli.train][INFO] - task: AudioFinetuningTask
+[2022-09-08 08:27:04,701][fairseq_cli.train][INFO] - model: Wav2VecCtc
+[2022-09-08 08:27:04,702][fairseq_cli.train][INFO] - criterion: CtcCriterion
+[2022-09-08 08:27:04,704][fairseq_cli.train][INFO] - num. shared model params: 97,639,193 (num. trained: 97,639,193)
+[2022-09-08 08:27:04,705][fairseq_cli.train][INFO] - num. expert model params: 0 (num. trained: 0)

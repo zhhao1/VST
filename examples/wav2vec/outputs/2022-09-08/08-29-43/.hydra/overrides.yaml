@@ -1,0 +1,2 @@
+- task.data=/home/speech/release_dev_final_1/wav2vec
+- model.w2v_path=/media/speech/304d52c6-17e2-43b3-a344-fa3686f7638c/chinese_pretrain/chinese-wav2vec2-base.pt

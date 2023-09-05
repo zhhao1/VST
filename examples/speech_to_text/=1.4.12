@@ -1,0 +1,13 @@
+Looking in indexes: http://pypi.tuna.tsinghua.edu.cn/simple
+Requirement already satisfied: sacrebleu in /home/speech/anaconda3/envs/fairseq/lib/python3.7/site-packages (2.0.0)
+Requirement already satisfied: colorama in /home/speech/anaconda3/envs/fairseq/lib/python3.7/site-packages (from sacrebleu) (0.3.9)
+Requirement already satisfied: regex in /home/speech/anaconda3/envs/fairseq/lib/python3.7/site-packages (from sacrebleu) (2020.7.14)
+Collecting numpy>=1.17 (from sacrebleu)
+  Downloading https://pypi.tuna.tsinghua.edu.cn/packages/50/46/292cff79f5b30151b027400efdb3f740ea03271b600751b6696cf550c10d/numpy-1.21.5-cp37-cp37m-manylinux_2_12_x86_64.manylinux2010_x86_64.whl (15.7MB)
+Requirement already satisfied: tabulate>=0.8.9 in /home/speech/anaconda3/envs/fairseq/lib/python3.7/site-packages (from sacrebleu) (0.8.9)
+Requirement already satisfied: portalocker in /home/speech/anaconda3/envs/fairseq/lib/python3.7/site-packages (from sacrebleu) (2.3.2)
+Installing collected packages: numpy
+  Found existing installation: numpy 1.15.1
+    Uninstalling numpy-1.15.1:
+      Successfully uninstalled numpy-1.15.1
+Successfully installed numpy-1.21.5
