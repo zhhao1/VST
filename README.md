@@ -3,22 +3,23 @@ The implementation based on [fairseq](https://github.com/pytorch/fairseq) codeba
 
 # Pre-processing
 We recommend pre-extraction of sentence-level representation features. Due to the large parameters of speech laser model, online extraction often causes OOM problems.
-## set path
+set path
+```bash
 fairseq=/path/to/fairseq
 export PYTHONPATH=${fairseq}:$PYTHONPATH
 MUSTC_ROOT=/path/to/must-c
 lang=de
 pretrain_path=/path/to/speech_laser
 pretrain_name=english.pt
-
-## pre-extraction of sentence-level representation features
+```
+pre-extraction of sentence-level representation features
 ```bash
 python examples/vae_st/scripts/prepare_utt_pre.py \
   --data-root ${MUSTC_ROOT} --language ${lang} \
   --pretrain-utt-path $pretrain_path --pretrain-utt-name $pretrain_name \
   --process-number 300000 --multi 1
 ```
-## pre-processing of must-c data
+pre-processing of must-c data
 ```bash
 python examples/vae_st/scripts/prep_mustc_raw.py \
   --data-root ${MUSTC_ROOT} --task st \
@@ -26,12 +27,15 @@ python examples/vae_st/scripts/prep_mustc_raw.py \
 ```
 
 # Training
-## set path
+set path
+```bash
 w2v_path=/path/to/wav2vec_small.pt
 run_dir=${fairseq}/examples/vae_st/run/en-${lang}/run1
 SAVE_DIR=${run_dir}/savedir
 tensorboard_dir=${run_dir}/tensorboard
-## begin training
+```
+begin training
+```bash
 python train.py ${MUSTC_ROOT}/en-${lang}\
   --config-yaml config_st.yaml --train-subset train_st --valid-subset dev_st \
   --save-dir ${SAVE_DIR} --num-workers 4 --fp16 \
@@ -48,16 +52,16 @@ python train.py ${MUSTC_ROOT}/en-${lang}\
   --word-dropout --word-droprate 0.3 \
   --add-to-embedding --pretrain-utt \
   --vae --hidden-dim 1024 --z-dim 256 --kl-weight 1.0 --kl-annealing-steps 50000 | tee ${run_dir}/log.txt 
-
+```
 # Evaluation
-## average checkpoint
-CHECKPOINT_FILENAME=avg_last_10_checkpoint.pt
+average checkpoint
 ```bash
+CHECKPOINT_FILENAME=avg_last_10_checkpoint.pt
 python scripts/average_checkpoints.py \
   --inputs ${SAVE_DIR} --num-epoch-checkpoints 10 \
   --output "${SAVE_DIR}/${CHECKPOINT_FILENAME}"
 ```
-## evaluate the final model 
+evaluate the final model 
 ```bash
 python ./fairseq_cli/generate.py ${MUSTC_ROOT}/en-${lang} \
   --config-yaml config_st.yaml --gen-subset tst-COMMON_st --task speech_to_text \
